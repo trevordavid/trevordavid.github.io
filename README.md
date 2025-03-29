@@ -9,6 +9,7 @@ A clean, minimalist personal portfolio site inspired by [p.cv](https://p.cv).
 - Mobile-responsive layout with device-specific elements
 - Email copy to clipboard functionality
 - Clean link styling with external indicators
+- Collapsible "PRESS" section with modular data management
 
 ## Customization
 
@@ -18,14 +19,16 @@ To customize this site for your own use:
    ```javascript
    const siteConfig = {
        name: "Your Name",
-       title: "Your Title",
-       email: "your.email@example.com"
+       emailUser: "your.email",
+       emailDomain: "example.com"
    };
    ```
 
 2. Update the link URLs in the click handler functions at the bottom of `main.js`.
 
 3. Modify the experience and social links text in `index.html` if needed.
+
+4. See `PRESS-README.md` for instructions on managing press links.
 
 ## Theme Options
 
