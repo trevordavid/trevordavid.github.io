@@ -10,14 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var pressItemsContainer = document.getElementById("press-items");
     var toggleIcon = document.querySelector(".toggle-icon");
 
-    var link1 = document.getElementById("link-1");
-    var link2 = document.getElementById("link-2");
-    var link3 = document.getElementById("link-3");
-    var link4 = document.getElementById("link-4");
-    var link5 = document.getElementById("link-5");
-    var link6 = document.getElementById("link-6");
-    var link7 = document.getElementById("link-7");
-    var link8 = document.getElementById("link-8");
+    var linkQuantFinance = document.getElementById("link-1");
+    var linkCCA = document.getElementById("link-2");
+    var linkNASA = document.getElementById("link-3");
+    var linkCaltech = document.getElementById("link-4");
+    var linkCV = document.getElementById("link-5");
+    var linkPortfolio = document.getElementById("link-6");
+    var linkPublications = document.getElementById("link-publications");
+    var linkGithub = document.getElementById("link-7");
+    var linkLinkedin = document.getElementById("link-8");
 
     // Debug logging
     console.log('Press toggle element:', pressToggle);
@@ -105,36 +106,40 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Links - using addEventListener instead of onclick property
-    if (link1) link1.addEventListener('click', function() {
+    if (linkQuantFinance) linkQuantFinance.addEventListener('click', function() {
         window.open("https://example.com/quantitative-researcher", '_blank');
     });
 
-    if (link2) link2.addEventListener('click', function() {
+    if (linkCCA) linkCCA.addEventListener('click', function() {
         window.open("https://www.simonsfoundation.org/flatiron/center-for-computational-astrophysics/", '_blank');
     });
 
-    if (link3) link3.addEventListener('click', function() {
+    if (linkNASA) linkNASA.addEventListener('click', function() {
         window.open("https://www.jpl.nasa.gov/", '_blank');
     });
 
-    if (link4) link4.addEventListener('click', function() {
+    if (linkCaltech) linkCaltech.addEventListener('click', function() {
         window.open("https://www.caltech.edu/", '_blank');
     });
 
-    if (link5) link5.addEventListener('click', function() {
+    if (linkCV) linkCV.addEventListener('click', function() {
         window.open("https://github.com/trevordavid/cv/blob/main/cv.pdf", '_blank');
     });
 
-    if (link6) link6.addEventListener('click', function() {
+    if (linkPortfolio) linkPortfolio.addEventListener('click', function() {
         window.open("https://github.com/trevordavid/portfolio/", '_blank');
     });
 
-    if (link7) link7.addEventListener('click', function() {
+    if (linkGithub) linkGithub.addEventListener('click', function() {
         window.open("https://github.com/trevordavid", '_blank');
     });
 
-    if (link8) link8.addEventListener('click', function() {
+    if (linkLinkedin) linkLinkedin.addEventListener('click', function() {
         window.open("https://www.linkedin.com/in/trevor-j-david-30494017/", '_blank');
+    });
+
+    if (linkPublications) linkPublications.addEventListener('click', function() {
+        window.open("https://ui.adsabs.harvard.edu/user/libraries/jtVFaJEgTa-f_8rDodxeJg", '_blank');
     });
 
     // Press section toggle - completely rewritten
