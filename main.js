@@ -36,14 +36,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Configuration
     const siteConfig = {
         name: "TJD",
-        // Email is stored in parts to avoid scrapers
-        emailUser: "your.email",
-        emailDomain: "example.com"
+        // Email is encoded using Base64 for better protection against scrapers
+        emailUser: "dHJldm9yamRhdmlk", // Base64 encoded "trevorjdavid"
+        emailDomain: "Z21haWwuY29t" // Base64 encoded "gmail.com"
     };
 
-    // Reconstruct email only when needed
+    // Reconstruct email only when needed with decoding
     function getEmail() {
-        return siteConfig.emailUser + "@" + siteConfig.emailDomain;
+        return atob(siteConfig.emailUser) + "@" + atob(siteConfig.emailDomain);
     }
 
     // Apply site config
