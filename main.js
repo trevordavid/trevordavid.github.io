@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Configuration
     const siteConfig = {
-        name: "TREVOR DAVID",
+        name: "TJD",
         // Email is stored in parts to avoid scrapers
         emailUser: "your.email",
         emailDomain: "example.com"
