@@ -15,20 +15,20 @@
 }
 
 :root[data-theme="3"] {
-    --bg-color: #f5f5dc; /* Beige */
+    --bg-color: #d0d0b7; /* Beige */
     --text-color: #4b3621; /* Coffee Brown */
     --hover-color: rgba(75, 54, 33, 0.15);
 }
 
 :root[data-theme="4"] {
-    --bg-color: #dcf5dc; /* Mint */
-    --text-color: #2e8b57; /* Sea Green */
+    --bg-color: #1d60d4; /* Mint */
+    --text-color: #f0f1f5; /* Sea Green */
     --hover-color: rgba(46, 139, 87, 0.15);
 }
 
 :root[data-theme="5"] {
-    --bg-color: #dcdcf5; /* Lavender */
-    --text-color: #483d8b; /* Dark Slate Blue */
+    --bg-color: #c1c1d2; /* Lavender */
+    --text-color: #3a326e; /* Dark Slate Blue */
     --hover-color: rgba(72, 61, 139, 0.15);
 }
 
