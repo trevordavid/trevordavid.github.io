@@ -1,6 +1,6 @@
 /* Theme Variables */
 :root {
-    /* Theme 1 (Default) */
+    /* Theme 1 (Default) - Black text on white background */
     --bg-color: #ffffff;
     --text-color: #000000;
     --hover-color: rgba(0, 0, 0, 0.2);
@@ -9,39 +9,24 @@
 }
 
 :root[data-theme="2"] {
-    --bg-color: #efefef;
-    --text-color: #333333;
-    --hover-color: rgba(0, 0, 0, 0.15);
+    /* Theme 2 - Brown text on cream background */
+    --bg-color: #f5f5dc; /* Cream */
+    --text-color: #8b4513; /* Brown */
+    --hover-color: rgba(139, 69, 19, 0.15);
 }
 
 :root[data-theme="3"] {
-    --bg-color: #d0d0b7; /* Beige */
-    --text-color: #4b3621; /* Coffee Brown */
-    --hover-color: rgba(75, 54, 33, 0.15);
-}
-
-:root[data-theme="4"] {
-    --bg-color: #1d60d4; /* Mint */
-    --text-color: #f0f1f5; /* Sea Green */
-    --hover-color: rgba(46, 139, 87, 0.15);
-}
-
-:root[data-theme="5"] {
-    --bg-color: #c1c1d2; /* Lavender */
-    --text-color: #3a326e; /* Dark Slate Blue */
-    --hover-color: rgba(72, 61, 139, 0.15);
-}
-
-:root[data-theme="6"] {
-    --bg-color: #000000;
-    --text-color: #ffffff;
+    /* Theme 3 - White text on blue background */
+    --bg-color: #0047ab; /* Cobalt Blue */
+    --text-color: #ffffff; /* White */
     --hover-color: rgba(255, 255, 255, 0.2);
 }
 
-:root[data-theme="7"] {
-    --bg-color: #333333;
-    --text-color: #efefef;
-    --hover-color: rgba(255, 255, 255, 0.15);
+:root[data-theme="4"] {
+    /* Theme 4 - White text on black background */
+    --bg-color: #000000; /* Black */
+    --text-color: #ffffff; /* White */
+    --hover-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Base Styles */

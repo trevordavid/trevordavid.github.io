@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Theme handling
-    var storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "6" : "1");
+    var storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "4" : "1");
 
     if (storedTheme) {
         document.documentElement.setAttribute('data-theme', storedTheme);
@@ -66,14 +66,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     themeToggle.onclick = function() {
         var currentTheme = document.documentElement.getAttribute("data-theme");
-        var targetTheme = "6";
+        var targetTheme = "4";
         
         if (currentTheme === "1") { targetTheme = "2"; }
         else if (currentTheme === "2") { targetTheme = "3"; }
         else if (currentTheme === "3") { targetTheme = "4"; }
-        else if (currentTheme === "4") { targetTheme = "5"; }
-        else if (currentTheme === "5") { targetTheme = "6"; }
-        else if (currentTheme === "6") { targetTheme = "7"; }
         else { targetTheme = "1"; }
 
         document.documentElement.setAttribute('data-theme', targetTheme);
