@@ -131,10 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
         window.open("https://www.linkedin.com/in/trevor-j-david-30494017/", '_blank');
     });
 
-    if (linkPublications) linkPublications.addEventListener('click', function() {
-        window.open("https://scholar.google.com/citations?user=t12ArKcAAAAJ&hl=en", '_blank');
-    });
-
     // Press section toggle - completely rewritten
     if (pressToggle) {
         // Set initial state
