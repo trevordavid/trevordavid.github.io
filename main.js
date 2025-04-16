@@ -10,15 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var pressItemsContainer = document.getElementById("press-items");
     var toggleIcon = document.querySelector(".toggle-icon");
 
-    var linkQuantFinance = document.getElementById("link-1");
-    var linkCCA = document.getElementById("link-2");
-    var linkNASA = document.getElementById("link-3");
-    var linkCaltech = document.getElementById("link-4");
-    var linkCV = document.getElementById("link-5");
-    var linkPortfolio = document.getElementById("link-6");
+    var linkCCA = document.getElementById("link-cca");
+    var linkNASA = document.getElementById("link-nasa");
+    var linkCaltech = document.getElementById("link-caltech");
+    var linkCV = document.getElementById("link-cv");
+    var linkPortfolio = document.getElementById("link-portfolio");
     var linkPublications = document.getElementById("link-publications");
-    var linkGithub = document.getElementById("link-7");
-    var linkLinkedin = document.getElementById("link-8");
+    var linkGithub = document.getElementById("link-github");
+    var linkLinkedin = document.getElementById("link-linkedin");
 
     // Debug logging
     console.log('Press toggle element:', pressToggle);
@@ -121,6 +120,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (linkPortfolio) linkPortfolio.addEventListener('click', function() {
         window.open("https://github.com/trevordavid/portfolio/", '_blank');
+    });
+
+    if (linkPublications) linkPublications.addEventListener('click', function() {
+        window.open("https://scholar.google.com/citations?user=t12ArKcAAAAJ&hl=en", '_blank');
     });
 
     if (linkGithub) linkGithub.addEventListener('click', function() {
