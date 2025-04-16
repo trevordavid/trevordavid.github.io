@@ -103,10 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Links - using addEventListener instead of onclick property
-    if (linkQuantFinance) linkQuantFinance.addEventListener('click', function() {
-        window.open("https://example.com/quantitative-researcher", '_blank');
-    });
-
     if (linkCCA) linkCCA.addEventListener('click', function() {
         window.open("https://www.simonsfoundation.org/flatiron/center-for-computational-astrophysics/", '_blank');
     });
@@ -136,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (linkPublications) linkPublications.addEventListener('click', function() {
-        window.open("https://ui.adsabs.harvard.edu/user/libraries/jtVFaJEgTa-f_8rDodxeJg", '_blank');
+        window.open("https://scholar.google.com/citations?user=t12ArKcAAAAJ&hl=en", '_blank');
     });
 
     // Press section toggle - completely rewritten
