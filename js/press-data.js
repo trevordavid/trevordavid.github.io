@@ -11,6 +11,12 @@
 
 const pressItems = [
     {
+        title: "NATURE NEWS & VIEWS",
+        url: "assets/nature_20260108.pdf",
+        date: "2026-01-08",
+        description: "Nature News & Views article"
+    },
+    {
         title: "NEW SCIENTIST",
         url: "https://www.newscientist.com/article/2510539-super-low-density-worlds-reveal-how-common-planetary-systems-form/",
         date: "2026-01-07",
@@ -52,4 +58,7 @@ const pressItems = [
         date: "2016-06-19",
         description: "NASA's K2 finds newborn exoplanet around young star"
     }
-]; 
+];
+
+// Make pressItems globally accessible for main.js
+window.pressItems = pressItems;

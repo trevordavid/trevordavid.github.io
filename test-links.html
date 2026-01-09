@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Link Test</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+        button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Link Test</h1>
+    <p>Click the buttons below to test if JavaScript links work in your browser:</p>
+    
+    <button id="test1">Test 1: Direct window.open()</button>
+    <button id="test2">Test 2: Click event with window.open()</button>
+    <button id="test3">Test 3: href link for comparison</button>
+    <a href="https://github.com/trevordavid/cv/blob/main/cv.pdf" target="_blank">Test 4: Regular HTML link</a>
+
+    <div id="result" style="margin-top: 20px; padding: 10px; background: #ffe; border: 1px solid #dda;"></div>
+
+    <script>
+        // Direct onclick property
+        document.getElementById('test1').onclick = function() {
+            document.getElementById('result').textContent = 'Test 1 clicked!';
+            window.open('https://github.com/trevordavid/cv/blob/main/cv.pdf', '_blank');
+        };
+
+        // Event listener approach
+        document.getElementById('test2').addEventListener('click', function() {
+            document.getElementById('result').textContent = 'Test 2 clicked!';
+            window.open('https://github.com/trevordavid/cv/blob/main/cv.pdf', '_blank');
+        });
+
+        // Change location approach
+        document.getElementById('test3').addEventListener('click', function() {
+            document.getElementById('result').textContent = 'Test 3 clicked!';
+            window.location.href = 'https://github.com/trevordavid/cv/blob/main/cv.pdf';
+        });
+    </script>
+</body>
+</html> 

@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Configuration
     const siteConfig = {
-        name: "TJD",
+        name: "trevor",
         // Email is encoded using Base64 for better protection against scrapers
         emailUser: "dHJldm9yamRhdmlk", // Base64 encoded "trevorjdavid"
         emailDomain: "Z21haWwuY29t" // Base64 encoded "gmail.com"
@@ -208,11 +208,17 @@ document.addEventListener('DOMContentLoaded', function() {
         items.forEach(item => {
             const title = item.title.replace(/ /g, '&nbsp;'); // Replace spaces with &nbsp;
             
+            // Detect if the URL is a PDF file
+            const isPdf = item.url.toLowerCase().endsWith('.pdf');
+            
             const itemElement = document.createElement('div');
             itemElement.className = 'content-row press-item';
             
+            // Add type attribute for PDFs to help browsers handle them properly
+            const linkType = isPdf ? 'type="application/pdf"' : '';
+            
             itemElement.innerHTML = `
-                <a href="${item.url}" target="_blank" class="content-link" tabindex="1">
+                <a href="${item.url}" target="_blank" ${linkType} class="content-link" tabindex="1">
                     <div class="text-container">
                         <span class="company-name">${title}</span>
                         ${item.date ? `<span class="date-range">${formatDate(item.date)}</span>` : ''}
