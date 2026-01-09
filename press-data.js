@@ -48,7 +48,7 @@ const pressItems = [
     },
     {
         title: "NASA",
-        url: "https://exoplanets.nasa.gov/news/1355/nasas-k2-finds-newborn-exoplanet-around-young-star/",
+        url: "https://www.jpl.nasa.gov/news/nasas-k2-finds-newborn-exoplanet-around-young-star/",
         date: "2016-06-19",
         description: "NASA's K2 finds newborn exoplanet around young star"
     }
