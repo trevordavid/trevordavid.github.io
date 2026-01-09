@@ -11,6 +11,12 @@
 
 const pressItems = [
     {
+        title: "NEW SCIENTIST",
+        url: "https://www.newscientist.com/article/2510539-super-low-density-worlds-reveal-how-common-planetary-systems-form/",
+        date: "2026-01-07",
+        description: "Super-low-density worlds reveal how common planetary systems form"
+    },
+    {
         title: "NY TIMES",
         url: "https://www.nytimes.com/2024/01/12/science/wasp-69b-tail-planet.html",
         date: "2024-01-12",
