@@ -10,14 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var pressItemsContainer = document.getElementById("press-items");
     var toggleIcon = document.querySelector(".toggle-icon");
 
-    var linkCCA = document.getElementById("link-cca");
-    var linkNASA = document.getElementById("link-nasa");
-    var linkCaltech = document.getElementById("link-caltech");
-    var linkCV = document.getElementById("link-cv");
-    var linkPortfolio = document.getElementById("link-portfolio");
-    var linkPublications = document.getElementById("link-publications");
-    var linkGithub = document.getElementById("link-github");
-    var linkLinkedin = document.getElementById("link-linkedin");
+    // Link elements are no longer needed - links handled by HTML
 
     // Debug logging
     console.log('Press toggle element:', pressToggle);
@@ -101,38 +94,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Links - using addEventListener instead of onclick property
-    if (linkCCA) linkCCA.addEventListener('click', function() {
-        window.open("https://www.simonsfoundation.org/flatiron/center-for-computational-astrophysics/", '_blank');
-    });
-
-    if (linkNASA) linkNASA.addEventListener('click', function() {
-        window.open("https://www.jpl.nasa.gov/", '_blank');
-    });
-
-    if (linkCaltech) linkCaltech.addEventListener('click', function() {
-        window.open("https://www.caltech.edu/", '_blank');
-    });
-
-    if (linkCV) linkCV.addEventListener('click', function() {
-        window.open("https://github.com/trevordavid/cv/blob/main/cv.pdf", '_blank');
-    });
-
-    if (linkPortfolio) linkPortfolio.addEventListener('click', function() {
-        window.open("https://github.com/trevordavid/portfolio/", '_blank');
-    });
-
-    if (linkPublications) linkPublications.addEventListener('click', function() {
-        window.open("https://scholar.google.com/citations?user=t12ArKcAAAAJ&hl=en", '_blank');
-    });
-
-    if (linkGithub) linkGithub.addEventListener('click', function() {
-        window.open("https://github.com/trevordavid", '_blank');
-    });
-
-    if (linkLinkedin) linkLinkedin.addEventListener('click', function() {
-        window.open("https://www.linkedin.com/in/trevor-j-david-30494017/", '_blank');
-    });
+    // Links are handled by HTML href and target="_blank" attributes
+    // No JavaScript event listeners needed - they were causing duplicate tabs
 
     // Press section toggle - completely rewritten
     if (pressToggle) {
