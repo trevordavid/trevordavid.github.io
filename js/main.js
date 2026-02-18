@@ -50,10 +50,52 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Theme handling
-    var storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "4" : "1");
+    var themeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    var lightFaviconHref = "assets/favicon-globe-512x512.png";
+    var darkFaviconHref = "assets/favicon-globe-inverted-512x512.png";
 
-    if (storedTheme) {
-        document.documentElement.setAttribute('data-theme', storedTheme);
+    function hasExplicitThemePreference() {
+        return localStorage.getItem('theme') !== null;
+    }
+
+    function isDarkVisualTheme(themeValue) {
+        return themeValue === "3" || themeValue === "4";
+    }
+
+    function updateFavicon(themeValue) {
+        var favicon = document.getElementById("site-favicon");
+        if (!favicon) {
+            return;
+        }
+
+        var useDarkFavicon = isDarkVisualTheme(themeValue);
+        favicon.href = useDarkFavicon ? darkFaviconHref : lightFaviconHref;
+    }
+
+    function applyTheme(themeValue, persistTheme) {
+        if (!themeValue) {
+            return;
+        }
+
+        document.documentElement.setAttribute('data-theme', themeValue);
+        if (persistTheme) {
+            localStorage.setItem('theme', themeValue);
+        }
+        updateFavicon(themeValue);
+    }
+
+    var storedTheme = localStorage.getItem('theme');
+    var defaultTheme = themeMediaQuery.matches ? "4" : "1";
+    var initialTheme = storedTheme || defaultTheme;
+
+    applyTheme(initialTheme, false);
+
+    if (themeMediaQuery.addEventListener) {
+        themeMediaQuery.addEventListener('change', function(event) {
+            if (!hasExplicitThemePreference()) {
+                applyTheme(event.matches ? "4" : "1", false);
+            }
+        });
     }
 
     themeToggle.onclick = function() {
@@ -65,8 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         else if (currentTheme === "3") { targetTheme = "4"; }
         else { targetTheme = "1"; }
 
-        document.documentElement.setAttribute('data-theme', targetTheme);
-        localStorage.setItem('theme', targetTheme);
+        applyTheme(targetTheme, true);
     }
 
     // Email handling
