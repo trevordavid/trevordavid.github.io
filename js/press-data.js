@@ -36,7 +36,7 @@ const pressItems = [
     },
     {
         title: "NATURE ASTRONOMY",
-        url: "https://www.nature.com/articles/s41550-019-0981-y",
+        url: "assets/david19_nature-research-highlights.pdf",
         date: "2019-11-27",
         description: "A Kepler multiplanet system precursor"
     },
