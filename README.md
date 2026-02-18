@@ -49,6 +49,17 @@ You can host this site on:
 - Vercel
 - Any static web hosting service
 
+## Development
+
+- Run `npm install` to install lint tooling.
+- Run `npm run lint` for full local checks.
+- Run `npm test` for full local validation.
+- Enable pre-commit hooks for staged file checks:
+
+  ```sh
+  git config core.hooksPath .githooks
+  ```
+
 ## License
 
 MIT

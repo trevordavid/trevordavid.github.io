@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+set -e
+
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
+
+if [ -z "$STAGED_FILES" ]; then
+  exit 0
+fi
+
+JS_FILES=$(printf "%s\n" "$STAGED_FILES" | grep -E "\\.js$")
+CSS_FILES=$(printf "%s\n" "$STAGED_FILES" | grep -E "\\.css$")
+HTML_FILES=$(printf "%s\n" "$STAGED_FILES" | grep -E "\\.html$")
+
+if [ -n "$JS_FILES" ]; then
+  printf "%s\n" "$JS_FILES" | xargs node --check
+  npm run lint:js -- $JS_FILES
+fi
+
+if [ -n "$CSS_FILES" ]; then
+  npm run lint:css -- $CSS_FILES
+fi
+
+if [ -n "$HTML_FILES" ]; then
+  npm run lint:html -- $HTML_FILES
+fi
