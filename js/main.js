@@ -142,16 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (pressToggle) {
         // Set initial state
         let isVisible = false;
-        updatePressToggle();
-        
-        pressToggle.addEventListener('click', function() {
-            // Toggle state
-            isVisible = !isVisible;
-            updatePressToggle();
-        });
-        
-        // Function to update the UI based on the current state
-        function updatePressToggle() {
+        var updatePressToggle = function() {
             if (isVisible) {
                 // Show press items
                 pressItemsContainer.style.display = "block";
@@ -169,7 +160,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 pressToggle.setAttribute("aria-expanded", "false");
             }
-        }
+        };
+
+        updatePressToggle();
+        
+        pressToggle.addEventListener('click', function() {
+            // Toggle state
+            isVisible = !isVisible;
+            updatePressToggle();
+        });
     }
 
     // Function to load press items from the global pressItems array
@@ -178,8 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Try using the global pressItems array defined in press-data.js
             if (typeof window.pressItems !== 'undefined' && Array.isArray(window.pressItems)) {
                 renderPressItems(window.pressItems);
-            } else if (typeof pressItems !== 'undefined' && Array.isArray(pressItems)) {
-                renderPressItems(pressItems);
             } else {
                 // Fallback items if no press data is available
                 const fallbackItems = [
