@@ -49,6 +49,18 @@ You can host this site on:
 - Vercel
 - Any static web hosting service
 
+## Analytics
+
+- Plausible Cloud is wired in via the script tag in `index.html`.
+- The tracked production domain is `trevorjdavid.com`.
+- DNS stays managed in Squarespace; no DNS change is required for the default Plausible integration because events are sent from the browser.
+- Before relying on the dashboard, create the `trevorjdavid.com` site in Plausible Cloud so incoming events are accepted.
+- The site tracks pageviews automatically plus these custom events:
+  - `Outbound Click` for external links
+  - `Contact Copy` for the desktop email copy action
+  - `Contact Email` for the mobile `mailto:` action
+- Direct traffic to `trevordavid.github.io` is intentionally out of scope for this setup unless that hostname is separately tracked or redirected.
+
 ## Development
 
 - Run `npm install` to install lint tooling.

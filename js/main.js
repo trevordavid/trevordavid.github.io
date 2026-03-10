@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Configuration
     const siteConfig = {
         name: "trevor",
+        siteUrl: "https://trevorjdavid.com/",
         // Email is encoded using Base64 for better protection against scrapers
         emailUser: "dHJldm9yamRhdmlk", // Base64 encoded "trevorjdavid"
         emailDomain: "Z21haWwuY29t" // Base64 encoded "gmail.com"
@@ -38,10 +39,57 @@ document.addEventListener('DOMContentLoaded', function() {
         return atob(siteConfig.emailUser) + "@" + atob(siteConfig.emailDomain);
     }
 
+    function trackEvent(eventName, props) {
+        if (typeof window.plausible !== 'function') {
+            return;
+        }
+
+        if (props && Object.keys(props).length > 0) {
+            window.plausible(eventName, { props: props });
+            return;
+        }
+
+        window.plausible(eventName);
+    }
+
+    function getExternalDestinationHost(href) {
+        try {
+            return new URL(href, window.location.href).host;
+        } catch (error) {
+            return "";
+        }
+    }
+
+    function getLinkText(anchor) {
+        return anchor.textContent.replace(/\s+/g, ' ').trim();
+    }
+
+    function isTrackedExternalLink(anchor) {
+        var href = anchor.getAttribute('href');
+
+        if (!href || href.charAt(0) === '#') {
+            return false;
+        }
+
+        try {
+            var url = new URL(href, window.location.href);
+            var isHttpLink = url.protocol === 'http:' || url.protocol === 'https:';
+            return isHttpLink && url.origin !== window.location.origin;
+        } catch (error) {
+            return false;
+        }
+    }
+
     // Apply site config
     document.title = siteConfig.name;
     document.querySelector('meta[name="description"]').setAttribute("content", siteConfig.name);
     document.querySelector('meta[property="og:description"]').setAttribute("content", siteConfig.name);
+    document.querySelector('meta[property="og:url"]').setAttribute("content", siteConfig.siteUrl);
+
+    var canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (canonicalLink) {
+        canonicalLink.setAttribute("href", siteConfig.siteUrl);
+    }
 
     // More specific selector that won't affect press items
     const nameElement = document.querySelector('.content-container > .content-row:nth-child(3) .company-name');
@@ -124,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         emailCopy.onclick = function() {
             navigator.clipboard.writeText(getEmail());
+            trackEvent("Contact Copy", { surface: "desktop" });
             const root = document.querySelector(":root");
             root.style.setProperty("--copy-text", `" [COPIED]"`);
         }
@@ -131,12 +180,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (emailLink) {
         emailLink.onclick = function() {
+            trackEvent("Contact Email", { surface: "mobile" });
             window.location.href = "mailto:" + getEmail();
         }
     }
 
     // Links are handled by HTML href and target="_blank" attributes
-    // No JavaScript event listeners needed - they were causing duplicate tabs
+    // Track external links without interfering with the browser's default navigation
+    document.addEventListener('click', function(event) {
+        var target = event.target;
+        var anchor;
+        var href;
+
+        if (!(target instanceof Element)) {
+            return;
+        }
+
+        anchor = target.closest('a[href]');
+        if (!anchor || !isTrackedExternalLink(anchor)) {
+            return;
+        }
+
+        href = anchor.getAttribute('href');
+        trackEvent("Outbound Click", {
+            link_id: anchor.id || "",
+            link_text: getLinkText(anchor),
+            destination_host: getExternalDestinationHost(href)
+        });
+    });
 
     // Press section toggle - completely rewritten
     if (pressToggle) {
