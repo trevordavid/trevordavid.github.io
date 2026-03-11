@@ -25,10 +25,11 @@ const pressItems = [
     {
         title: "UCLA NEWSROOM",
         url: "https://newsroom.ucla.edu/releases/we-finally-know-how-the-most-common-types-of-planets-are-created",
+        date: "2026-01-01",
         description: "We finally know how the most common types of planets are created"
     },
     {
-        title: "NY TIMES",
+        title: "NEW YORK TIMES",
         url: "https://www.nytimes.com/2024/01/12/science/wasp-69b-tail-planet.html",
         date: "2024-01-12",
         description: "This Distant Planet Has a 350,000-Mile-Long Cometlike Tail"
@@ -46,7 +47,7 @@ const pressItems = [
         description: "A Kepler multiplanet system precursor"
     },
     {
-        title: "LA TIMES",
+        title: "LOS ANGELES TIMES",
         url: "https://www.latimes.com/science/sciencenow/la-sci-sn-young-exoplanet-20160620-snap-story.html",
         date: "2016-06-20",
         description: "Young exoplanet article"
