@@ -40,10 +40,16 @@ const pressItems = [
         description: "Shrinking Planets Could Explain Mystery of Universe's Missing Worlds"
     },
     {
-        title: "NATURE ASTRONOMY",
+        title: "NATURE ASTRONOMY RESEARCH HIGHLIGHTS",
         url: "assets/david19_nature-research-highlights.pdf",
         date: "2019-11-27",
         description: "A Kepler multiplanet system precursor"
+    },
+    {
+        title: "LA TIMES",
+        url: "https://www.latimes.com/science/sciencenow/la-sci-sn-young-exoplanet-20160620-snap-story.html",
+        date: "2016-06-20",
+        description: "Young exoplanet article"
     },
     {
         title: "THE GUARDIAN",
