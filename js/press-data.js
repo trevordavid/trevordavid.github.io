@@ -23,6 +23,11 @@ const pressItems = [
         description: "Super-low-density worlds reveal how common planetary systems form"
     },
     {
+        title: "UCLA NEWSROOM",
+        url: "https://newsroom.ucla.edu/releases/we-finally-know-how-the-most-common-types-of-planets-are-created",
+        description: "We finally know how the most common types of planets are created"
+    },
+    {
         title: "NY TIMES",
         url: "https://www.nytimes.com/2024/01/12/science/wasp-69b-tail-planet.html",
         date: "2024-01-12",
