@@ -53,10 +53,21 @@ You can host this site on:
 
 - Cloudflare Web Analytics is wired in via the beacon script tag in `index.html`.
 - The tracked production domain is `trevorjdavid.com`.
-- DNS stays managed in Squarespace; no DNS change is required for the default Cloudflare integration because events are sent from the browser.
-- Before relying on the dashboard, create a Cloudflare account, enable Web Analytics for `trevorjdavid.com`, and replace the placeholder token in `index.html` with the token Cloudflare issues.
+- Cloudflare Web Analytics now assumes Cloudflare is also the public edge for the site so HTTPS redirects and security headers can be enforced outside GitHub Pages.
 - This setup is page analytics only; it does not track the Plausible custom events that were previously added.
 - Direct traffic to `trevordavid.github.io` is intentionally out of scope for this setup unless that hostname is separately tracked or redirected.
+
+## Security Hardening
+
+- The repo now adds a CSP meta tag, a referrer policy meta tag, explicit `rel="noopener noreferrer"` on external links, and DOM-safe press item rendering.
+- CI now uses `npm ci` with a committed lockfile and job-scoped GitHub Actions permissions.
+- The remaining high-severity protections must be configured in GitHub Pages and Cloudflare, not in this repo:
+  - keep `trevorjdavid.com` configured as the GitHub Pages custom domain
+  - enable GitHub Pages `Enforce HTTPS`
+  - move DNS to Cloudflare and proxy the GitHub Pages origin
+  - enable `Always Use HTTPS` in Cloudflare
+  - redirect `http://trevorjdavid.com`, `http://www.trevorjdavid.com`, and `https://www.trevorjdavid.com` to `https://trevorjdavid.com/`
+  - add edge headers in Cloudflare for HSTS, CSP, `X-Content-Type-Options`, `Permissions-Policy`, and frame protection
 
 ## Development
 

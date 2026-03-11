@@ -207,31 +207,48 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!pressItemsContainer) return;
         
         // Clear any existing items
-        pressItemsContainer.innerHTML = '';
+        pressItemsContainer.textContent = '';
         
         // Create and append each press item
         items.forEach(item => {
-            const title = item.title.replace(/ /g, '&nbsp;'); // Replace spaces with &nbsp;
-            
             // Detect if the URL is a PDF file
             const isPdf = item.url.toLowerCase().endsWith('.pdf');
-            
+
             const itemElement = document.createElement('div');
             itemElement.className = 'content-row press-item';
-            
-            // Add type attribute for PDFs to help browsers handle them properly
-            const linkType = isPdf ? 'type="application/pdf"' : '';
-            
-            itemElement.innerHTML = `
-                <a href="${item.url}" target="_blank" ${linkType} class="content-link" tabindex="1">
-                    <div class="text-container">
-                        <span class="company-name">${title}</span>
-                        ${item.date ? `<span class="date-range">${formatDate(item.date)}</span>` : ''}
-                        <span class="mobile-only">[↗]</span>
-                    </div>
-                </a>
-            `;
-            
+
+            const link = document.createElement('a');
+            link.href = item.url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.className = 'content-link';
+            link.tabIndex = 1;
+            if (isPdf) {
+                link.type = 'application/pdf';
+            }
+
+            const textContainer = document.createElement('div');
+            textContainer.className = 'text-container';
+
+            const titleElement = document.createElement('span');
+            titleElement.className = 'company-name';
+            titleElement.textContent = item.title.replace(/ /g, '\u00a0');
+            textContainer.appendChild(titleElement);
+
+            if (item.date) {
+                const dateElement = document.createElement('span');
+                dateElement.className = 'date-range';
+                dateElement.textContent = formatDate(item.date);
+                textContainer.appendChild(dateElement);
+            }
+
+            const mobileIndicator = document.createElement('span');
+            mobileIndicator.className = 'mobile-only';
+            mobileIndicator.textContent = '[↗]';
+            textContainer.appendChild(mobileIndicator);
+
+            link.appendChild(textContainer);
+            itemElement.appendChild(link);
             pressItemsContainer.appendChild(itemElement);
         });
     }
