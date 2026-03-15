@@ -15,9 +15,10 @@ The press links are stored in a separate data file (`press-data.js`), making the
 const pressItems = [
     {
         title: "PUBLICATION NAME",
+        articleTitle: "Full article title",
         url: "https://example.com/article-link",
-        date: "YYYY-MM-DD",  // Optional
-        description: "Short description of article"  // Optional
+        date: "YYYY-MM-DD",
+        description: "Short description of article"  // Optional legacy field
     },
     // Add more items here...
 ];
@@ -30,6 +31,7 @@ To add a new press link, add a new object to the array:
 ```javascript
 {
     title: "NEW PUBLICATION",
+    articleTitle: "New article title",
     url: "https://example.com/new-article",
     date: "2024-01-15",
     description: "Description of new article"
@@ -47,6 +49,7 @@ Delete the entire object from the array.
 ## Formatting Notes
 
 - The `title` will be displayed in all caps, with non-breaking spaces between words
+- The `articleTitle` is stored for metadata purposes and is not currently shown on the website
 - The `date` will be displayed as just the year (e.g., "2023")
 - All press links will be indented under the "PRESS" section
 - Links automatically open in a new tab when clicked
