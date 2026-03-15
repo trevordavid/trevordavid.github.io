@@ -270,7 +270,11 @@ span, p, button {
 
 .press-item .text-container {
     padding-left: 24px; /* Indent press items */
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 140px;
     align-items: baseline;
+    column-gap: 12px;
 }
 
 .press-label-group {
@@ -288,8 +292,10 @@ span, p, button {
 
 .press-article-title {
     display: none;
-    margin-left: 0.75ch;
-    flex: 0 0 auto;
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
     min-width: max-content;
     overflow: visible;
     text-overflow: clip;
@@ -299,7 +305,10 @@ span, p, button {
 }
 
 .press-item .date-range {
-    flex-basis: 140px;
+    grid-column: 2;
+    width: 140px;
+    margin-left: 0;
+    justify-self: end;
 }
 
 @media (hover: hover) and (pointer: fine) {
