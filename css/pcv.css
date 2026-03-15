@@ -264,7 +264,7 @@ span, p, button {
 
 /* Press section styling */
 .press-items-container {
-    overflow: hidden;
+    overflow: visible;
     transition: all 0.3s ease;
 }
 
@@ -289,11 +289,11 @@ span, p, button {
 .press-article-title {
     display: none;
     margin-left: 0.75ch;
-    flex: 1 1 auto;
-    min-width: 0;
+    flex: 0 0 auto;
+    min-width: max-content;
     overflow: visible;
     text-overflow: clip;
-    white-space: normal;
+    white-space: nowrap;
     font-style: italic;
     text-transform: none;
 }
