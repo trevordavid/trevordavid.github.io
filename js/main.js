@@ -238,13 +238,6 @@ document.addEventListener('DOMContentLoaded', function() {
             titleElement.textContent = item.title.replace(/ /g, '\u00a0');
             labelGroup.appendChild(titleElement);
 
-            if (item.articleTitle) {
-                const articleTitleElement = document.createElement('span');
-                articleTitleElement.className = 'press-article-title';
-                articleTitleElement.textContent = item.articleTitle;
-                labelGroup.appendChild(articleTitleElement);
-            }
-
             textContainer.appendChild(labelGroup);
 
             if (item.date) {
@@ -252,6 +245,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 dateElement.className = 'date-range';
                 dateElement.textContent = formatDate(item.date, itemElement.classList.contains('press-item'));
                 textContainer.appendChild(dateElement);
+            }
+
+            if (item.articleTitle) {
+                const articleTitleElement = document.createElement('span');
+                articleTitleElement.className = 'press-article-title';
+                articleTitleElement.textContent = item.articleTitle;
+                textContainer.appendChild(articleTitleElement);
             }
 
             const mobileIndicator = document.createElement('span');

@@ -36,7 +36,7 @@ const pressItems = [
         title: "UCLA NEWSROOM",
         url: "https://newsroom.ucla.edu/releases/we-finally-know-how-the-most-common-types-of-planets-are-created",
         articleTitle: "We finally know how the most common types of planets are created",
-        date: "2026-01-01",
+        date: "2026-01-07",
         description: "We finally know how the most common types of planets are created"
     },
     {

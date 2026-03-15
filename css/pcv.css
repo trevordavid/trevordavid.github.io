@@ -270,6 +270,7 @@ span, p, button {
 
 .press-item .text-container {
     padding-left: 24px; /* Indent press items */
+    align-items: baseline;
 }
 
 .press-label-group {
@@ -288,10 +289,11 @@ span, p, button {
 .press-article-title {
     display: none;
     margin-left: 0.75ch;
+    flex: 1 1 auto;
     min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
     font-style: italic;
     text-transform: none;
 }
