@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (item.date) {
                 const dateElement = document.createElement('span');
                 dateElement.className = 'date-range';
-                dateElement.textContent = formatDate(item.date);
+                dateElement.textContent = formatDate(item.date, itemElement.classList.contains('press-item'));
                 textContainer.appendChild(dateElement);
             }
 
@@ -266,9 +266,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Helper function to format dates
-    function formatDate(dateString) {
-        // Optional: Format the date as needed
-        // This simple version just extracts the year
+    function formatDate(dateString, useFullDate) {
+        if (!dateString) {
+            return '';
+        }
+
+        if (useFullDate) {
+            return dateString;
+        }
+
+        // Non-press rows still render their existing year/range text.
         return dateString.split('-')[0];
     }
 }); 

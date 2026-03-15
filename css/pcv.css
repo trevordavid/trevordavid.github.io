@@ -207,7 +207,8 @@ span, p, button {
     align-items: center;
     border-radius: 4px;
     transition: background-color 0.2s ease;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 12px;
     cursor: pointer;
 }
 
@@ -221,16 +222,18 @@ span, p, button {
     font-feature-settings: "tnum" on, "lnum" on;
     font-variant-numeric: tabular-nums;
     text-align: left;
-    flex-grow: 1;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .date-range {
     display: inline-block;
     font-feature-settings: "tnum" on, "lnum" on;
     font-variant-numeric: tabular-nums;
-    text-align: left;
+    text-align: right;
     white-space: nowrap;
-    margin-left: 12px;
+    margin-left: auto;
+    flex: 0 0 122px;
 }
 
 /* Consistent spacing for all labels */
@@ -267,8 +270,6 @@ span, p, button {
 
 .press-item .text-container {
     padding-left: 24px; /* Indent press items */
-    justify-content: flex-start;
-    gap: 12px;
 }
 
 .press-label-group {
@@ -277,6 +278,7 @@ span, p, button {
     gap: 0;
     flex: 1 1 auto;
     min-width: 0;
+    overflow: hidden;
 }
 
 .press-item .company-name {
@@ -295,7 +297,7 @@ span, p, button {
 }
 
 .press-item .date-range {
-    flex: 0 0 auto;
+    flex-basis: 140px;
 }
 
 @media (hover: hover) and (pointer: fine) {

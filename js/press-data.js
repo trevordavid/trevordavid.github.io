@@ -35,6 +35,7 @@ const pressItems = [
     {
         title: "UCLA NEWSROOM",
         url: "https://newsroom.ucla.edu/releases/we-finally-know-how-the-most-common-types-of-planets-are-created",
+        articleTitle: "We finally know how the most common types of planets are created",
         date: "2026-01-01",
         description: "We finally know how the most common types of planets are created"
     },
@@ -62,8 +63,9 @@ const pressItems = [
     {
         title: "LOS ANGELES TIMES",
         url: "https://www.latimes.com/science/sciencenow/la-sci-sn-young-exoplanet-20160620-snap-story.html",
+        articleTitle: "Newly discovered 'baby' planets could unlock mysteries of planetary evolution",
         date: "2016-06-20",
-        description: "Young exoplanet article"
+        description: "Newly discovered 'baby' planets could unlock mysteries of planetary evolution"
     },
     {
         title: "THE GUARDIAN",
