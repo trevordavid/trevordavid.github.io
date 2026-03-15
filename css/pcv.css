@@ -267,6 +267,41 @@ span, p, button {
 
 .press-item .text-container {
     padding-left: 24px; /* Indent press items */
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.press-label-group {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.press-item .company-name {
+    flex: 0 0 auto;
+}
+
+.press-article-title {
+    display: none;
+    margin-left: 0.75ch;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-style: italic;
+    text-transform: none;
+}
+
+.press-item .date-range {
+    flex: 0 0 auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .press-item .content-link:hover .press-article-title {
+        display: inline-block;
+    }
 }
 
 .toggle-icon {

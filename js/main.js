@@ -230,10 +230,22 @@ document.addEventListener('DOMContentLoaded', function() {
             const textContainer = document.createElement('div');
             textContainer.className = 'text-container';
 
+            const labelGroup = document.createElement('div');
+            labelGroup.className = 'press-label-group';
+
             const titleElement = document.createElement('span');
             titleElement.className = 'company-name';
             titleElement.textContent = item.title.replace(/ /g, '\u00a0');
-            textContainer.appendChild(titleElement);
+            labelGroup.appendChild(titleElement);
+
+            if (item.articleTitle) {
+                const articleTitleElement = document.createElement('span');
+                articleTitleElement.className = 'press-article-title';
+                articleTitleElement.textContent = item.articleTitle;
+                labelGroup.appendChild(articleTitleElement);
+            }
+
+            textContainer.appendChild(labelGroup);
 
             if (item.date) {
                 const dateElement = document.createElement('span');
