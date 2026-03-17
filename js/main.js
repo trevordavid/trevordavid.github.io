@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
         else { targetTheme = "1"; }
 
         applyTheme(targetTheme, true);
+        document.dispatchEvent(new CustomEvent("theme-toggle-activated"));
     }
 
     // Email handling

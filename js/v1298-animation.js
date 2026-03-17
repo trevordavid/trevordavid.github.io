@@ -392,7 +392,7 @@ document.addEventListener("DOMContentLoaded", function() {
     subscribe(hoverQuery, syncAnimationState);
     subscribe(motionQuery, syncAnimationState);
     document.addEventListener("visibilitychange", syncAnimationState);
-    document.addEventListener("click", unlockAnimation, { capture: true, passive: true });
+    document.addEventListener("theme-toggle-activated", unlockAnimation);
 
     syncAnimationState();
 });

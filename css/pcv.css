@@ -16,10 +16,10 @@
 }
 
 :root[data-theme="4"] {
-    /* Theme 4 - White text on black background */
-    --bg-color: #000000; /* Black */
-    --text-color: #ffffff; /* White */
-    --hover-color: rgba(255, 255, 255, 0.2);
+    /* Theme 4 - Off-white text on dark gray background */
+    --bg-color: #262626;
+    --text-color: #f6f5f1;
+    --hover-color: rgba(246, 245, 241, 0.16);
 }
 
 /* Base Styles */
