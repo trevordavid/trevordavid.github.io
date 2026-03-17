@@ -26,18 +26,25 @@ const pressItems = [
         description: "Ultra-low-density planets seen around a young star"
     },
     {
-        title: "NEW SCIENTIST",
-        url: "https://www.newscientist.com/article/2510539-super-low-density-worlds-reveal-how-common-planetary-systems-form/",
-        articleTitle: "Super-low-density worlds reveal how common planetary systems form",
-        date: "2026-01-07",
-        description: "Super-low-density worlds reveal how common planetary systems form"
-    },
-    {
         title: "UCLA NEWSROOM",
         url: "https://newsroom.ucla.edu/releases/we-finally-know-how-the-most-common-types-of-planets-are-created",
         articleTitle: "We finally know how the most common types of planets are created",
         date: "2026-01-07",
         description: "We finally know how the most common types of planets are created"
+    },
+    {
+        title: "BBC SCIENCE FOCUS",
+        url: "https://www.sciencefocus.com/news/missing-link-planet-forming",
+        articleTitle: "Most planets in our galaxy are born 'bloated', new study suggests",
+        date: "2026-01-07",
+        description: "Most planets in our galaxy are born 'bloated', new study suggests"
+    },
+    {
+        title: "NEW SCIENTIST",
+        url: "https://www.newscientist.com/article/2510539-super-low-density-worlds-reveal-how-common-planetary-systems-form/",
+        articleTitle: "Super-low-density worlds reveal how common planetary systems form",
+        date: "2026-01-07",
+        description: "Super-low-density worlds reveal how common planetary systems form"
     },
     {
         title: "NEW YORK TIMES",

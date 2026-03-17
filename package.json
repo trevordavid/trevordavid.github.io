@@ -6,8 +6,8 @@
     "lint:js": "eslint",
     "lint:css": "stylelint",
     "lint:html": "htmlhint",
-    "lint": "npm run lint:js -- js/main.js js/press-data.js && npm run lint:css -- css/pcv.css && npm run lint:html -- index.html",
-    "test:syntax": "node --check js/main.js && node --check js/press-data.js",
+    "lint": "npm run lint:js -- js/main.js js/press-data.js js/publications-data.js js/v1298-system-data.js js/v1298-animation.js js/v1298-animation-worker.js && npm run lint:css -- css/pcv.css && npm run lint:html -- index.html",
+    "test:syntax": "node --check js/main.js && node --check js/press-data.js && node --check js/publications-data.js && node --check js/v1298-system-data.js && node --check js/v1298-animation.js && node --check js/v1298-animation-worker.js",
     "test": "npm run lint && npm run test:syntax"
   },
   "devDependencies": {

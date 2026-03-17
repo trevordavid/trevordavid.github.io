@@ -1,18 +1,11 @@
 /* Theme Variables */
 :root {
-    /* Theme 1 (Default) - Black text on white background */
-    --bg-color: #ffffff;
-    --text-color: #000000;
-    --hover-color: rgba(0, 0, 0, 0.2);
+    /* Theme 1 (Default) - Dark gray text on soft off-white background */
+    --bg-color: #f6f5f1;
+    --text-color: #262626;
+    --hover-color: rgba(38, 38, 38, 0.16);
     --copy-text: " [+]";
     --font-primary: "Space Mono", "SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
-:root[data-theme="2"] {
-    /* Theme 2 - Brown text on cream background */
-    --bg-color: #f5f5dc; /* Cream */
-    --text-color: #8b4513; /* Brown */
-    --hover-color: rgba(139, 69, 19, 0.15);
 }
 
 :root[data-theme="3"] {
@@ -69,6 +62,7 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 600px;
+    width: 100%;
 }
 
 /* Content Rows */
@@ -135,31 +129,42 @@ button, a.content-link {
 
 /* ASCII Container */
 .ascii-container {
-    position: fixed;
-    right: 80px;
-    bottom: 80px;
+    position: relative;
+    width: min(600px, calc(100% - 8px));
+    margin-top: 12px;
+    margin-left: 8px;
+    margin-bottom: 12px;
     font-size: 13px;
-    opacity: 0.8;
+    line-height: 1;
+    opacity: 0;
     display: none;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    align-self: flex-start;
+}
+
+.has-ascii-animation .ascii-container {
+    display: block;
+    opacity: 0.86;
+    pointer-events: auto;
 }
 
 .ascii-click-container {
-    position: fixed;
-    right: 80px;
-    bottom: 80px;
-    width: 200px;
-    height: 200px;
-    z-index: 100;
-    cursor: pointer;
     display: none;
 }
 
+.ascii-container pre {
+    width: 100%;
+    display: block;
+    text-transform: none;
+    letter-spacing: 0.04em;
+    line-height: 1.04;
+    user-select: none;
+    cursor: default;
+}
+
 .ascii-hint {
-    position: absolute;
-    bottom: -24px;
-    right: 0;
-    opacity: 0.6;
-    font-size: 13px;
+    display: none;
 }
 
 /* Mobile Adjustments */
@@ -176,6 +181,12 @@ button, a.content-link {
         min-height: 30px;
     }
     
+    .ascii-container, .ascii-click-container {
+        display: none !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
     .ascii-container, .ascii-click-container {
         display: none !important;
     }
@@ -263,9 +274,63 @@ span, p, button {
 }
 
 /* Press section styling */
+.publications-items-container,
 .press-items-container {
     overflow: visible;
     transition: all 0.3s ease;
+}
+
+.publication-item .text-container,
+.publication-section .text-container {
+    padding-left: 24px;
+}
+
+.publication-subitems .publication-item .text-container {
+    padding-left: 48px;
+}
+
+.publication-item-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+}
+
+.publication-detail-item .company-name {
+    white-space: nowrap;
+}
+
+.content-row .publication-hover-details {
+    display: none;
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 0;
+    width: 360px;
+    align-items: flex-start;
+    text-transform: none;
+    white-space: normal;
+}
+
+.publication-article-title {
+    font-style: italic;
+    margin-bottom: 6px;
+    text-transform: none;
+}
+
+.publication-summary {
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: 0.8;
+    text-transform: none;
+    white-space: normal;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .publication-detail-item .content-link:hover + .publication-hover-details {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .press-item .text-container {

@@ -6,21 +6,21 @@ document.addEventListener('DOMContentLoaded', function() {
     var emailCopy = document.getElementById("email-copy");
     var emailLink = document.getElementById("email-link");
     
+    var publicationsToggle = document.getElementById("publications-toggle");
+    var publicationsItemsContainer = document.getElementById("publications-items");
     var pressToggle = document.getElementById("press-toggle");
     var pressItemsContainer = document.getElementById("press-items");
-    var toggleIcon = document.querySelector(".toggle-icon");
 
-    // Link elements are no longer needed - links handled by HTML
-
-    // Debug logging
-    console.log('Press toggle element:', pressToggle);
-    console.log('Press items container:', pressItemsContainer);
-    console.log('Toggle icon:', toggleIcon);
-
-    // Initialize press items container as hidden
+    // Initialize collapsible containers as hidden
+    if (publicationsItemsContainer) {
+        publicationsItemsContainer.style.display = "none";
+    }
     if (pressItemsContainer) {
         pressItemsContainer.style.display = "none";
     }
+
+    // Load publications items data
+    loadPublicationItems();
 
     // Load press items data
     loadPressItems();
@@ -65,6 +65,18 @@ document.addEventListener('DOMContentLoaded', function() {
         return localStorage.getItem('theme') !== null;
     }
 
+    function normalizeThemeValue(themeValue) {
+        if (themeValue === "2") {
+            return "1";
+        }
+
+        if (themeValue === "1" || themeValue === "3" || themeValue === "4") {
+            return themeValue;
+        }
+
+        return null;
+    }
+
     function isDarkVisualTheme(themeValue) {
         return themeValue === "3" || themeValue === "4";
     }
@@ -80,18 +92,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function applyTheme(themeValue, persistTheme) {
-        if (!themeValue) {
+        var normalizedThemeValue = normalizeThemeValue(themeValue);
+
+        if (!normalizedThemeValue) {
             return;
         }
 
-        document.documentElement.setAttribute('data-theme', themeValue);
+        document.documentElement.setAttribute('data-theme', normalizedThemeValue);
         if (persistTheme) {
-            localStorage.setItem('theme', themeValue);
+            localStorage.setItem('theme', normalizedThemeValue);
         }
-        updateFavicon(themeValue);
+        updateFavicon(normalizedThemeValue);
     }
 
-    var storedTheme = localStorage.getItem('theme');
+    var storedTheme = normalizeThemeValue(localStorage.getItem('theme'));
     var defaultTheme = themeMediaQuery.matches ? "4" : "1";
     var initialTheme = storedTheme || defaultTheme;
 
@@ -109,8 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var currentTheme = document.documentElement.getAttribute("data-theme");
         var targetTheme = "4";
         
-        if (currentTheme === "1") { targetTheme = "2"; }
-        else if (currentTheme === "2") { targetTheme = "3"; }
+        if (currentTheme === "1") { targetTheme = "3"; }
         else if (currentTheme === "3") { targetTheme = "4"; }
         else { targetTheme = "1"; }
 
@@ -142,36 +155,175 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Press section toggle - completely rewritten
-    if (pressToggle) {
-        // Set initial state
-        let isVisible = false;
-        var updatePressToggle = function() {
-            if (isVisible) {
-                // Show press items
-                pressItemsContainer.style.display = "block";
-                // Update toggle icon
-                document.querySelectorAll('.toggle-icon').forEach(icon => {
-                    icon.textContent = "[-]";
-                });
-                pressToggle.setAttribute("aria-expanded", "true");
-            } else {
-                // Hide press items
-                pressItemsContainer.style.display = "none";
-                // Update toggle icon
-                document.querySelectorAll('.toggle-icon').forEach(icon => {
-                    icon.textContent = "[+]";
-                });
-                pressToggle.setAttribute("aria-expanded", "false");
-            }
-        };
+    function setToggleState(toggleButton, container, isVisible) {
+        if (!toggleButton || !container) {
+            return;
+        }
 
-        updatePressToggle();
-        
-        pressToggle.addEventListener('click', function() {
-            // Toggle state
+        container.style.display = isVisible ? "block" : "none";
+        toggleButton.setAttribute("aria-expanded", isVisible ? "true" : "false");
+
+        var desktopIcon = toggleButton.querySelector(".toggle-icon");
+        if (desktopIcon) {
+            desktopIcon.textContent = isVisible ? "[-]" : "[+]";
+        }
+
+        var mobileIcon = toggleButton.querySelector(".mobile-only");
+        if (mobileIcon) {
+            mobileIcon.textContent = isVisible ? "[-]" : "[+]";
+        }
+    }
+
+    function setupToggle(toggleButton, container) {
+        if (!toggleButton || !container) {
+            return;
+        }
+
+        let isVisible = false;
+        setToggleState(toggleButton, container, isVisible);
+
+        toggleButton.addEventListener('click', function() {
             isVisible = !isVisible;
-            updatePressToggle();
+            setToggleState(toggleButton, container, isVisible);
+        });
+    }
+
+    setupToggle(publicationsToggle, publicationsItemsContainer);
+    setupToggle(pressToggle, pressItemsContainer);
+
+    function loadPublicationItems() {
+        try {
+            if (typeof window.publicationItems !== 'undefined' && Array.isArray(window.publicationItems)) {
+                renderPublicationItems(window.publicationItems);
+            } else {
+                renderPublicationItems([
+                    {
+                        title: "GOOGLE SCHOLAR",
+                        url: "https://scholar.google.com/citations?user=t12ArKcAAAAJ&hl=en"
+                    }
+                ]);
+            }
+        } catch (error) {
+            console.error('Error loading publication data:', error);
+            renderPublicationItems([
+                {
+                    title: "GOOGLE SCHOLAR",
+                    url: "https://scholar.google.com/citations?user=t12ArKcAAAAJ&hl=en"
+                }
+            ]);
+        }
+    }
+
+    function createPublicationLinkRow(item, itemClassName) {
+        const row = document.createElement('div');
+        row.className = itemClassName || 'content-row publication-item';
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'publication-item-wrapper';
+
+        const link = document.createElement('a');
+        link.href = item.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.className = 'content-link';
+        link.tabIndex = 1;
+
+        if (item.url.toLowerCase().endsWith('.pdf')) {
+            link.type = 'application/pdf';
+        }
+
+        const textContainer = document.createElement('div');
+        textContainer.className = 'text-container';
+
+        const titleElement = document.createElement('span');
+        titleElement.className = 'company-name';
+        titleElement.textContent = item.title;
+        textContainer.appendChild(titleElement);
+
+        const mobileIndicator = document.createElement('span');
+        mobileIndicator.className = 'mobile-only';
+        mobileIndicator.textContent = '[↗]';
+        textContainer.appendChild(mobileIndicator);
+
+        link.appendChild(textContainer);
+        wrapper.appendChild(link);
+
+        if (item.summary) {
+            const hoverDetailsElement = document.createElement('div');
+            hoverDetailsElement.className = 'publication-hover-details';
+
+            if (item.articleTitle) {
+                const articleTitleElement = document.createElement('div');
+                articleTitleElement.className = 'publication-article-title';
+                articleTitleElement.textContent = item.articleTitle;
+                hoverDetailsElement.appendChild(articleTitleElement);
+            }
+
+            const summaryElement = document.createElement('div');
+            summaryElement.className = 'publication-summary';
+            summaryElement.textContent = item.summary;
+            hoverDetailsElement.appendChild(summaryElement);
+            wrapper.appendChild(hoverDetailsElement);
+        }
+
+        row.appendChild(wrapper);
+        return row;
+    }
+
+    function renderPublicationItems(items) {
+        if (!publicationsItemsContainer) return;
+
+        publicationsItemsContainer.textContent = '';
+
+        items.forEach(item => {
+            if (Array.isArray(item.items)) {
+                const sectionRow = document.createElement('div');
+                sectionRow.className = 'content-row publication-section';
+
+                const sectionButton = document.createElement('button');
+                sectionButton.className = 'content-switch publication-section-toggle';
+                sectionButton.tabIndex = 1;
+
+                const textContainer = document.createElement('div');
+                textContainer.className = 'text-container';
+
+                const titleElement = document.createElement('span');
+                titleElement.className = 'company-name';
+                titleElement.textContent = item.title;
+                textContainer.appendChild(titleElement);
+
+                const desktopIcon = document.createElement('span');
+                desktopIcon.className = 'toggle-icon no-mobile';
+                desktopIcon.textContent = '[+]';
+                textContainer.appendChild(desktopIcon);
+
+                const mobileIcon = document.createElement('span');
+                mobileIcon.className = 'mobile-only';
+                mobileIcon.textContent = '[+]';
+                textContainer.appendChild(mobileIcon);
+
+                sectionButton.appendChild(textContainer);
+                sectionRow.appendChild(sectionButton);
+                publicationsItemsContainer.appendChild(sectionRow);
+
+                const subitemsContainer = document.createElement('div');
+                subitemsContainer.className = 'publication-subitems';
+                subitemsContainer.style.display = 'none';
+
+                item.items.forEach(subitem => {
+                    subitemsContainer.appendChild(
+                        createPublicationLinkRow(subitem, 'content-row publication-item publication-detail-item')
+                    );
+                });
+
+                publicationsItemsContainer.appendChild(subitemsContainer);
+                setupToggle(sectionButton, subitemsContainer);
+                return;
+            }
+
+            publicationsItemsContainer.appendChild(
+                createPublicationLinkRow(item, 'content-row publication-item')
+            );
         });
     }
 

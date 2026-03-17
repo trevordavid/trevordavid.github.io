@@ -9,7 +9,7 @@
     <title>trevor</title>
     <meta name="description" content="Trevor J. David">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src https://fonts.gstatic.com; connect-src 'self' https://*.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src https://fonts.gstatic.com; connect-src 'self' https://*.cloudflareinsights.com; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
     <link rel="canonical" href="https://trevorjdavid.com/">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,7 +74,7 @@
                 <div class="content-row">
                     <a href="https://www.caltech.edu/" target="_blank" rel="noopener noreferrer" class="content-link" id="link-caltech" tabindex="1">
                         <div class="text-container">
-                            <span class="company-name">CALTECH</span>
+                            <span class="company-name">PH.D., CALTECH</span>
                             <span class="date-range">2011&nbsp;→&nbsp;2017</span>
                             <span class="mobile-only">[↗]</span>
                         </div>
@@ -104,14 +104,20 @@
                     </a>
                 </div>
 
-                <!-- Publications Link -->
+                <!-- Publications Section -->
                 <div class="content-row">
-                    <a href="https://scholar.google.com/citations?user=t12ArKcAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="content-link" id="link-publications" tabindex="1">
+                    <button id="publications-toggle" class="content-switch" tabindex="1">
                         <div class="text-container">
                             <span class="company-name">PUBLICATIONS</span>
-                            <span class="mobile-only">[↗]</span>
+                            <span class="toggle-icon no-mobile">[+]</span>
+                            <span class="mobile-only">[+]</span>
                         </div>
-                    </a>
+                    </button>
+                </div>
+
+                <!-- Collapsible Publication Items (Initially Hidden) -->
+                <div id="publications-items" class="publications-items-container" style="display: none;">
+                    <!-- Publication items will be dynamically inserted here from publications-data.js -->
                 </div>
 
                 <!-- Press Section -->
@@ -168,6 +174,11 @@
                     </a>
                 </div>
 
+                <div id="ascii" class="ascii-container" aria-hidden="true">
+                    <pre data-selection-enabled="false"></pre>
+                    <div id="ascii-hint" class="ascii-hint">[&nbsp;]</div>
+                </div>
+
                 <!-- Theme Toggle -->
                 <div class="content-row content-row-bottom">
                     <button id="theme-toggle" class="content-switch" tabindex="1">
@@ -178,18 +189,16 @@
                     </button>
                 </div>
             </div>
-            
-            <div id="ascii" class="ascii-container">
-                <pre data-selection-enabled="false"></pre>
-                <div id="ascii-hint" class="ascii-hint">[&nbsp;]</div>
-            </div>
 
             <div id="ascii-click" class="ascii-click-container"></div>
         </div>
     </div>
     
     <!-- Include press data before main.js -->
+    <script src="js/publications-data.js"></script>
     <script src="js/press-data.js"></script>
+    <script src="js/v1298-system-data.js"></script>
+    <script src="js/v1298-animation.js"></script>
     <script src="js/main.js"></script>
     <!-- Cloudflare Web Analytics -->
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;0dbd7fd98cbd483b910098020d87b21d&quot;}"></script>
