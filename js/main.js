@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
         link.appendChild(textContainer);
         wrapper.appendChild(link);
 
-        if (item.summary) {
+        if (item.articleTitle || item.summary) {
             const hoverDetailsElement = document.createElement('div');
             hoverDetailsElement.className = 'publication-hover-details';
 
@@ -259,10 +259,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 hoverDetailsElement.appendChild(articleTitleElement);
             }
 
-            const summaryElement = document.createElement('div');
-            summaryElement.className = 'publication-summary';
-            summaryElement.textContent = item.summary;
-            hoverDetailsElement.appendChild(summaryElement);
+            if (item.summary) {
+                const summaryElement = document.createElement('div');
+                summaryElement.className = 'publication-summary';
+                summaryElement.textContent = item.summary;
+                hoverDetailsElement.appendChild(summaryElement);
+            }
+
             wrapper.appendChild(hoverDetailsElement);
         }
 
