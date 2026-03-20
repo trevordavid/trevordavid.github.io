@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
         link.appendChild(textContainer);
         wrapper.appendChild(link);
 
-        if (item.articleTitle || item.summary) {
+        if (item.articleTitle || item.summary || item.summaryHtml) {
             const hoverDetailsElement = document.createElement('div');
             hoverDetailsElement.className = 'publication-hover-details';
 
@@ -260,10 +260,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 hoverDetailsElement.appendChild(articleTitleElement);
             }
 
-            if (item.summary) {
+            if (item.summary || item.summaryHtml) {
                 const summaryElement = document.createElement('div');
                 summaryElement.className = 'publication-summary';
-                summaryElement.textContent = item.summary;
+                if (item.summaryHtml) {
+                    summaryElement.innerHTML = item.summaryHtml;
+                } else {
+                    summaryElement.textContent = item.summary;
+                }
                 hoverDetailsElement.appendChild(summaryElement);
             }
 

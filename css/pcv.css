@@ -307,23 +307,36 @@ span, p, button {
     left: calc(100% + 12px);
     top: 0;
     width: 360px;
-    align-items: flex-start;
+    align-items: stretch;
     text-transform: none;
     white-space: normal;
 }
 
-.publication-article-title {
+.content-row .publication-article-title {
+    display: block;
+    width: 100%;
     font-style: italic;
     margin-bottom: 6px;
+    text-align: left;
     text-transform: none;
 }
 
-.publication-summary {
+.content-row .publication-summary {
+    display: block;
+    width: 100%;
     font-size: 13px;
     line-height: 1.5;
     opacity: 0.8;
+    text-align: justify;
     text-transform: none;
     white-space: normal;
+}
+
+.content-row .publication-summary em {
+    display: inline;
+    width: auto;
+    font-style: italic;
+    text-transform: none;
 }
 
 @media (hover: hover) and (pointer: fine) {

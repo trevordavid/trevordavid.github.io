@@ -21,10 +21,14 @@ document.addEventListener("DOMContentLoaded", function() {
     var showOrbitGuides = true;
     var isInteractionPaused = false;
     var hoverPauseEnabled = true;
+    var isFlickCursorActive = false;
     var kickResumeTimerId = null;
+    var cursorReleaseTimerId = null;
     var orbitGuides = buildOrbitGuides(system);
     var maxProjectedRadius = computeProjectedRadius(orbitGuides);
     var hitRadiusSquared = 9;
+    var readyCursor = 'url("assets/mac-glove-flick-ready-pixel.svg") 29 12, pointer';
+    var releaseCursor = 'url("assets/mac-glove-flick-released-pixel.svg") 29 14, pointer';
 
     if (asciiHint) {
         asciiHint.hidden = true;
@@ -43,8 +47,18 @@ document.addEventListener("DOMContentLoaded", function() {
         return isUnlocked && desktopQuery.matches && hoverQuery.matches && !motionQuery.matches;
     }
 
+    function setCursorValue(value) {
+        asciiContainer.style.cursor = value;
+        asciiPre.style.cursor = value;
+    }
+
     function syncCursor() {
-        asciiContainer.style.cursor = hoveredPlanetId ? "pointer" : "default";
+        if (isFlickCursorActive) {
+            setCursorValue(releaseCursor);
+            return;
+        }
+
+        setCursorValue(hoveredPlanetId ? readyCursor : "default");
     }
 
     function clearHistories() {
@@ -58,6 +72,25 @@ document.addEventListener("DOMContentLoaded", function() {
             window.clearTimeout(kickResumeTimerId);
             kickResumeTimerId = null;
         }
+    }
+
+    function clearCursorReleaseTimer() {
+        if (cursorReleaseTimerId !== null) {
+            window.clearTimeout(cursorReleaseTimerId);
+            cursorReleaseTimerId = null;
+        }
+    }
+
+    function triggerReleaseCursor() {
+        clearCursorReleaseTimer();
+        isFlickCursorActive = true;
+        syncCursor();
+
+        cursorReleaseTimerId = window.setTimeout(function() {
+            isFlickCursorActive = false;
+            cursorReleaseTimerId = null;
+            syncCursor();
+        }, 170);
     }
 
     function pauseForInteraction() {
@@ -277,6 +310,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         clearKickResumeTimer();
+        clearCursorReleaseTimer();
         clearHistories();
         latestPlanets = [];
         latestPlanetCells = {};
@@ -284,6 +318,7 @@ document.addEventListener("DOMContentLoaded", function() {
         showOrbitGuides = true;
         isInteractionPaused = false;
         hoverPauseEnabled = true;
+        isFlickCursorActive = false;
         asciiPre.textContent = "";
         asciiContainer.setAttribute("aria-hidden", "true");
         syncCursor();
@@ -343,7 +378,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     asciiContainer.addEventListener("mouseleave", function() {
         clearKickResumeTimer();
+        clearCursorReleaseTimer();
         hoverPauseEnabled = true;
+        isFlickCursorActive = false;
         setHoveredPlanetId(null);
         resumeFromInteraction();
     });
@@ -357,6 +394,7 @@ document.addEventListener("DOMContentLoaded", function() {
         clearHistories();
         showOrbitGuides = false;
         render(latestPlanets);
+        triggerReleaseCursor();
         worker.postMessage({
             type: "kick",
             planetId: hoveredPlanetId
